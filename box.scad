@@ -4,6 +4,9 @@ DEPTH=150;
 
 THICKNESS=2;
 
+/* [Hidden] */
+DISPLAY_BLOCKS=false;
+
 main();
 
 module main() {
@@ -113,9 +116,11 @@ module front_middle(width, height, depth) {
             bnc();
     };
 
-    color("red")
-        translate([0, height - screen_size - THICKNESS, -THICKNESS])
-        screen();
+    if (DISPLAY_BLOCKS) {
+        color("red")
+            translate([0, height - screen_size - THICKNESS, -THICKNESS])
+                screen();
+    }
 }
 
 module front_right(width, height, depth) {
@@ -175,9 +180,11 @@ module back_left(width, height, depth) {
             power_plug();
     };
 
-    color("red")
-        translate([27, THICKNESS + 5, THICKNESS + 5])
-            power_plug();
+    if (DISPLAY_BLOCKS) {
+        color("red")
+            translate([27, THICKNESS + 5, THICKNESS + 5])
+                power_plug();
+    }
 }
 
 module power_plug() {
@@ -200,9 +207,11 @@ module back_right(width, height, depth) {
             fan();
     };
 
-    color("red")
-        translate([width - 150 - THICKNESS, THICKNESS, THICKNESS])
-            alim();
+    if (DISPLAY_BLOCKS) {
+        color("red")
+            translate([width - 150 - THICKNESS, THICKNESS, THICKNESS])
+                alim();
+    }
 }
 
 module alim() {
