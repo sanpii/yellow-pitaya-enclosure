@@ -10,6 +10,20 @@ DISPLAY_BLOCKS=false;
 main();
 
 module main() {
+
+    difference() {
+        union() {
+            front();
+            back();
+        }
+        rotate([-90, 0, 0])
+            translate([-WIDTH / 3 + 20, -DEPTH / 3, HEIGHT])
+                linear_extrude(THICKNESS / 2)
+                    text("Yellow Pitaya", DEPTH / 3);
+    }
+}
+
+module front() {
     translate([-WIDTH/3, 0, DEPTH / 2])
         front_left(WIDTH/3, HEIGHT, DEPTH/2);
 
@@ -18,7 +32,9 @@ module main() {
 
     translate([WIDTH/3, 0, DEPTH / 2])
         front_right(WIDTH/3, HEIGHT, DEPTH/2);
+}
 
+module back() {
     translate([-WIDTH/3, 0, -DEPTH / 2])
         back_left(WIDTH/3, HEIGHT, DEPTH/2);
 
