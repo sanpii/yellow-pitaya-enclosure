@@ -3,51 +3,51 @@
 // @TODO Support sonde droite (x2) et gauches (x5)
 // @TODO Trous sd raspberry
 
-width=450;
-height=170;
-depth=150;
+WIDTH=450;
+HEIGHT=170;
+DEPTH=150;
 
-thickness=3;
+THICKNESS=3;
 
 main();
 
 module main() {
-    translate([-width/2, 0, depth / 2])
-        front_left(width/2, height, depth/2);
+    translate([-WIDTH/2, 0, DEPTH / 2])
+        front_left(WIDTH/2, HEIGHT, DEPTH/2);
 
-    translate([0, 0, depth / 2])
-        front_right(width/2, height, depth/2);
+    translate([0, 0, DEPTH / 2])
+        front_right(WIDTH/2, HEIGHT, DEPTH/2);
 
-    translate([-width/2, 0, -depth / 2])
-        back_left(width/2, height, depth/2);
+    translate([-WIDTH/2, 0, -DEPTH / 2])
+        back_left(WIDTH/2, HEIGHT, DEPTH/2);
 
-    translate([0, 0, -depth / 2])
-        back_right(width/2, height, depth/2);
+    translate([0, 0, -DEPTH / 2])
+        back_right(WIDTH/2, HEIGHT, DEPTH/2);
 }
 
 module part(width, height, depth) {
-    cube([width, height, thickness]);
+    cube([width, height, THICKNESS]);
 
     rotate([0, 90, 0])
-        cube([depth, height, thickness]);
+        cube([depth, height, THICKNESS]);
 
     rotate([-90, 0, 0])
-        cube([width, depth, thickness]);
+        cube([width, depth, THICKNESS]);
 
     rotate([-90, 0, 0])
-        cube([width, depth, thickness]);
+        cube([width, depth, THICKNESS]);
 
-    translate([0, height-thickness, 0])
+    translate([0, height-THICKNESS, 0])
         rotate([-90, 0, 0])
-            cube([width, depth, thickness]);
+            cube([width, depth, THICKNESS]);
 }
 
 module front_left(width, height, depth) {
     difference() {
         part(width, height, depth);
-    translate([thickness + 20, height - 50, 0])
+    translate([THICKNESS + 20, height - 50, 0])
         variable_alim();
-    translate([thickness + 20, height - 100, 0])
+    translate([THICKNESS + 20, height - 100, 0])
         fixed_alim();
     };
 }
@@ -71,7 +71,7 @@ module fixed_alim() {
 }
 
 module dps() {
-    cube([72, 40, thickness]);
+    cube([72, 40, THICKNESS]);
 }
 
 module banana_pair() {
@@ -83,7 +83,7 @@ module banana_pair() {
 }
 
 module banana_plug() {
-    cylinder(thickness, d=13);
+    cylinder(THICKNESS, d=13);
 }
 
 module front_right(width, height, depth) {
@@ -94,26 +94,26 @@ module front_right(width, height, depth) {
             rotate([0, 0, 180])
                 translate([-width, -height, 0])
                     part(width, height, depth);
-            translate([thickness, height - screen_size - thickness * 2, -thickness * 2])
-                cube([width - thickness, screen_size + thickness, thickness * 2]);
+            translate([THICKNESS, height - screen_size - THICKNESS * 2, -THICKNESS * 2])
+                cube([width - THICKNESS, screen_size + THICKNESS, THICKNESS * 2]);
         };
-        translate([-thickness+6, height - screen_size + thickness, -thickness * 2])
+        translate([-THICKNESS+6, height - screen_size + THICKNESS, -THICKNESS * 2])
             screen_in();
-        translate([0, height - screen_size - thickness, -thickness])
+        translate([0, height - screen_size - THICKNESS, -THICKNESS])
             screen_out();
         translate([20, 20, 0])
             bnc();
-        translate([width - 40, thickness + 3, 0])
+        translate([width - 40, THICKNESS + 3, 0])
             power_button();
     };
 }
 
 module screen_in() {
-    cube([min(201, width/2), 115, thickness * 3]);
+    cube([min(201, WIDTH/2), 115, THICKNESS * 3]);
 }
 
 module screen_out() {
-    cube([min(210, width/2), 126, thickness]);
+    cube([min(210, WIDTH/2), 126, THICKNESS]);
 }
 
 module bnc() {
@@ -131,11 +131,11 @@ module bnc() {
 }
 
 module bnc_plug() {
-    cylinder(thickness, d=21);
+    cylinder(THICKNESS, d=21);
 }
 
 module power_button() {
-    cube([23, 30, thickness]);
+    cube([23, 30, THICKNESS]);
 }
 
 module back_left(width, height, depth) {
@@ -143,12 +143,12 @@ module back_left(width, height, depth) {
         rotate([180, 0, 0])
             translate([0, -height, 0])
                 part(width, height, depth);
-            translate([27, thickness + 5, thickness + 5])
+            translate([27, THICKNESS + 5, THICKNESS + 5])
             power_plug();
     };
 
     color("red")
-        translate([27, thickness + 5, thickness + 5])
+        translate([27, THICKNESS + 5, THICKNESS + 5])
             power_plug();
 }
 
@@ -162,12 +162,12 @@ module back_right(width, height, depth) {
         rotate([0, 180, 0])
             translate([-width, 0, 0])
                 part(width, height, depth);
-        translate([width - 60, 60, -thickness])
+        translate([width - 60, 60, -THICKNESS])
             fan();
     };
 
     color("red")
-        translate([width - 150 - thickness, thickness, thickness])
+        translate([width - 150 - THICKNESS, THICKNESS, THICKNESS])
             alim();
 }
 
@@ -176,5 +176,5 @@ module alim() {
 }
 
 module fan() {
-    cylinder(thickness, d=60);
+    cylinder(THICKNESS, d=60);
 }
