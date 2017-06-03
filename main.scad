@@ -293,7 +293,7 @@ module back_left(width, height, depth) {
 
 module power_plug() {
     rotate([0, -90, 0])
-        cube([27.5, 50, 27]);
+        cube([27.5, 50, 26]);
 }
 
 module dps() {
