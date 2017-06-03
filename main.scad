@@ -5,7 +5,7 @@ DEPTH=150;
 THICKNESS=2;
 
 /* [Hidden] */
-DISPLAY_BLOCKS=true;
+DISPLAY_BLOCKS=false;
 
 main();
 
@@ -16,7 +16,7 @@ module main() {
             back();
         }
         rotate([-90, 0, 0])
-            translate([-WIDTH / 3 + 20, -DEPTH / 3, HEIGHT])
+            translate([-WIDTH / 3 + 40, 20, HEIGHT])
                 linear_extrude(THICKNESS / 2)
                     text("Yellow Pitaya", DEPTH / 3);
     }
