@@ -51,11 +51,11 @@ module part(width, height, depth) {
 
     translate([width, 0, -20])
         rotate([0, -90, 0])
-        screw();
+        screw_support();
 
     translate([width, height - 20, -20])
         rotate([0, -90, 0])
-        screw();
+        screw_support();
 
     rotate([0, 90, 0])
         cube([depth, height, THICKNESS]);
@@ -68,7 +68,7 @@ module part(width, height, depth) {
             cube([width, depth, THICKNESS]);
 }
 
-module screw() {
+module screw_support() {
     difference() {
         cube([20, 20, 10]);
         translate([10, 10, 0])
@@ -86,11 +86,11 @@ module middle_part(width, height, depth) {
 
     translate([10, 0, -20])
         rotate([0, -90, 0])
-        screw();
+        screw_support();
 
     translate([10, height - 20, -20])
         rotate([0, -90, 0])
-        screw();
+        screw_support();
 }
 
 module front_left(width, height, depth) {
@@ -102,22 +102,22 @@ module front_left(width, height, depth) {
             fixed_alim();
     };
 
-    translate([0, height - 30, -THICKNESS - 30])
+    translate([0, height - 30, -36])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 30, -THICKNESS - 30 * 2 - 10])
+    translate([0, height - 30, -36 * 2])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 80, -THICKNESS - 30])
+    translate([0, height - 80, -36])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 80, -THICKNESS - 30 * 2 - 10])
+    translate([0, height - 80, -36 * 2])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 130, -THICKNESS - 30])
+    translate([0, height - 130, -36])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 130, -THICKNESS - 30 * 2 - 10])
+    translate([0, height - 130, -36 * 2])
         rotate([180, 0, 180])
             sonde();
 
@@ -207,9 +207,9 @@ module front_right(width, height, depth) {
             power_button();
     };
 
-    translate([width, height - 30, -THICKNESS])
+    translate([width, height - 30, 0])
         sonde();
-    translate([width, height - 30, -THICKNESS - 30 - 10])
+    translate([width, height - 30, -36])
         sonde();
 
     if (DISPLAY_BLOCKS) {
@@ -265,16 +265,16 @@ module back_left(width, height, depth) {
                 lm2596();
     };
 
-    translate([0, height - 30, depth - THICKNESS - 30])
+    translate([0, height - 30, depth - 36])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 30, depth - THICKNESS - 30 * 2 - 10])
+    translate([0, height - 30, depth - 36 * 2])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 80, depth - THICKNESS - 30])
+    translate([0, height - 80, depth - 36])
         rotate([180, 0, 180])
             sonde();
-    translate([0, height - 80, depth - THICKNESS - 30 * 2 - 10])
+    translate([0, height - 80, depth - 36 * 2])
         rotate([180, 0, 180])
             sonde();
 
@@ -346,9 +346,9 @@ module back_right(width, height, depth) {
             alim();
     };
 
-    translate([width, height - 30, depth - THICKNESS])
+    translate([width, height - 30, depth])
         sonde();
-    translate([width, height - 30, depth - THICKNESS - 30 - 10])
+    translate([width, height - 30, depth - 36])
         sonde();
 
     if (DISPLAY_BLOCKS) {
@@ -365,23 +365,32 @@ module alim() {
 }
 
 module sonde() {
-    rotate([-90, 0, 0]) {
-        difference() {
-            union() {
-                cube([30, 30, 5]);
-                difference() {
+    translate([5, 0, 0]) {
+        rotate([-90, 0, 0]) {
+            difference() {
+                union() {
+                    cube([21, 24, 5]);
                     rotate([0, 90, 0])
-                        cube([20, 30, 20]);
-                    rotate([90, 90, 0])
-                        translate([20, 20, -30])
-                        cylinder(30, d=40);
+                        cube([20, 24, 20]);
+                    rotate([0, -90, 0])
+                        translate([-20, 0, 0])
+                            cube([25, 24, 5]);
                 }
+                rotate([90, 90, 0])
+                    translate([20, 20, -24])
+                        cylinder(24, d=40);
+                translate([15, 12, -5])
+                    cylinder(10, d=14);
+                rotate([0, 90, 0])
+                    translate([12, 12, 0])
+                        screw();
             }
-            translate([20, 15, -5])
-                cylinder(10, d=30);
-            rotate([90, 90, 90])
-                translate([10, 15, 0])
-                    cylinder(10, r=5);
         }
     }
+}
+
+module screw() {
+    cylinder(5, d=9, $fn=6);
+    translate([0, 0, -10])
+        cylinder(10, d=5, $fn=20);
 }
