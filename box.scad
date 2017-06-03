@@ -48,11 +48,16 @@ module back() {
 module part(width, height, depth) {
     cube([width, height, THICKNESS]);
 
+    translate([width, 0, -20])
+        rotate([0, -90, 0])
+        screw();
+
+    translate([width, height - 20, -20])
+        rotate([0, -90, 0])
+        screw();
+
     rotate([0, 90, 0])
         cube([depth, height, THICKNESS]);
-
-    rotate([-90, 0, 0])
-        cube([width, depth, THICKNESS]);
 
     rotate([-90, 0, 0])
         cube([width, depth, THICKNESS]);
@@ -62,6 +67,14 @@ module part(width, height, depth) {
             cube([width, depth, THICKNESS]);
 }
 
+module screw() {
+    difference() {
+        cube([20, 20, 10]);
+        translate([10, 10, 0])
+            cylinder(10, r=5);
+    };
+}
+
 module middle_part(width, height, depth) {
     difference() {
         part(width, height, depth);
@@ -69,6 +82,14 @@ module middle_part(width, height, depth) {
             translate([0, THICKNESS, 0])
                 cube([depth, height - THICKNESS * 2, THICKNESS]);
     };
+
+    translate([10, 0, -20])
+        rotate([0, -90, 0])
+        screw();
+
+    translate([10, height - 20, -20])
+        rotate([0, -90, 0])
+        screw();
 }
 
 module front_left(width, height, depth) {
