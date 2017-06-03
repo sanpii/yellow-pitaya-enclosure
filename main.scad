@@ -1,3 +1,5 @@
+use <Stencilia-A.ttf>
+
 WIDTH=500;
 HEIGHT=170;
 DEPTH=150;
@@ -16,9 +18,9 @@ module main() {
             back();
         }
         rotate([-90, 0, 0])
-            translate([-WIDTH / 3 + 40, 20, HEIGHT])
-                linear_extrude(THICKNESS / 2)
-                    text("Yellow Pitaya", DEPTH / 3);
+            translate([-WIDTH / 3 + 30, 20, HEIGHT - 1])
+                linear_extrude(THICKNESS)
+                    text("Yellow Pitaya", DEPTH / 3, "Stencilia\\-A:style=Regular");
     }
 }
 
