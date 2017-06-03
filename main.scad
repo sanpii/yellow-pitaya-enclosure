@@ -5,7 +5,7 @@ DEPTH=150;
 THICKNESS=2;
 
 /* [Hidden] */
-DISPLAY_BLOCKS=false;
+DISPLAY_BLOCKS=true;
 
 main();
 
@@ -96,7 +96,7 @@ module front_left(width, height, depth) {
         part(width, height, depth);
         translate([THICKNESS + 30, height - 50, 0])
             variable_alim();
-        translate([THICKNESS + 35, height - 100, 0])
+        translate([THICKNESS + 35, height - 100, -26 + THICKNESS])
             fixed_alim();
     };
 
@@ -118,12 +118,25 @@ module front_left(width, height, depth) {
     translate([0, height - 130, -THICKNESS - 30 * 2 - 10])
         rotate([180, 0, 180])
             sonde();
+
+    if (DISPLAY_BLOCKS) {
+        color("red") {
+            translate([THICKNESS + 30, height - 50, -24 + THICKNESS])
+                variable_alim();
+            translate([THICKNESS + 35, height - 100, -26 + THICKNESS])
+                fixed_alim();
+        }
+    }
 }
 
 module variable_alim() {
-    dps();
-    translate([25, -20, 0])
+    dps_screen();
+    translate([25, -20, -2])
         banana_pair();
+}
+
+module dps_screen() {
+    cube([72, 40, 24]);
 }
 
 module fixed_alim() {
@@ -134,12 +147,8 @@ module fixed_alim() {
         banana_pair();
     translate([40, -20, 0])
         banana_pair();
-    translate([20, -60, 0])
+    translate([20, -60, 9])
         power_button();
-}
-
-module dps() {
-    cube([72, 40, THICKNESS]);
 }
 
 module banana_pair() {
@@ -151,7 +160,7 @@ module banana_pair() {
 }
 
 module banana_plug() {
-    cylinder(THICKNESS, d=13);
+    cylinder(26, d=13);
 }
 
 module front_middle(width, height, depth) {
@@ -172,9 +181,12 @@ module front_middle(width, height, depth) {
     };
 
     if (DISPLAY_BLOCKS) {
-        color("red")
+        color("red") {
             translate([0, height - screen_size - THICKNESS, -THICKNESS])
                 screen();
+            translate([25, 20, -38 + THICKNESS])
+                bnc();
+        }
     }
 }
 
@@ -197,6 +209,15 @@ module front_right(width, height, depth) {
         sonde();
     translate([width, height - 30, -THICKNESS - 30 - 10])
         sonde();
+
+    if (DISPLAY_BLOCKS) {
+        color("red") {
+            translate([width - 30, THICKNESS + 3, -17 + THICKNESS])
+                power_button();
+            translate([21, 20, -38 + THICKNESS])
+                bnc_plug();
+        }
+    }
 }
 
 module screen_in() {
@@ -224,11 +245,11 @@ module bnc() {
 }
 
 module bnc_plug() {
-    cylinder(THICKNESS, d=21);
+    cylinder(38, d=21);
 }
 
 module power_button() {
-    cube([23, 30, THICKNESS]);
+    cube([23, 30, 17]);
 }
 
 module back_left(width, height, depth) {
@@ -237,7 +258,9 @@ module back_left(width, height, depth) {
             translate([0, -height, 0])
                 part(width, height, depth);
             translate([27, THICKNESS + 5, THICKNESS + 5])
-            power_plug();
+                power_plug();
+            translate([(width - 102) / 2, THICKNESS + 10, 0])
+                lm2596();
     };
 
     translate([0, height - 30, depth - THICKNESS - 30])
@@ -255,9 +278,14 @@ module back_left(width, height, depth) {
 
 
     if (DISPLAY_BLOCKS) {
-        color("red")
+        color("red") {
             translate([27, THICKNESS + 5, THICKNESS + 5])
                 power_plug();
+            translate([(width - 93) / 2, height - 73 - THICKNESS, 0])
+                dps();
+            translate([(width - 102) / 2, THICKNESS + 10, 0])
+                lm2596();
+        };
     }
 }
 
@@ -266,10 +294,45 @@ module power_plug() {
         cube([27.5, 50, 27]);
 }
 
+module dps() {
+    cube([93, 73, 45]);
+}
+
+module lm2596() {
+    cube([102, 80, 20]);
+    translate([0, 23, -THICKNESS - 1])
+        cube([88, 15, THICKNESS + 1]);
+}
+
 module back_middle(width, height, depth) {
-    rotate([180, 0, 0])
-        translate([0, -height, 0])
-            middle_part(width, height, depth);
+    difference() {
+        rotate([180, 0, 0])
+            translate([0, -height, 0])
+                middle_part(width, height, depth);
+        translate([20, THICKNESS, 0])
+            redpitaya();
+    }
+
+
+    if (DISPLAY_BLOCKS) {
+        color("red") {
+            translate([20, THICKNESS, 0])
+                redpitaya();
+            translate([20, 70, 0])
+                raspberry();
+        }
+    }
+}
+
+module redpitaya() {
+    cube([110, 60, 25]);
+    translate([30, 10, -THICKNESS - 1])
+        rotate([0, 0, 45])
+            cube([30, 30, THICKNESS + 1]);
+}
+
+module raspberry() {
+    cube([90, 60, 20]);
 }
 
 module back_right(width, height, depth) {
@@ -277,8 +340,8 @@ module back_right(width, height, depth) {
         rotate([0, 180, 0])
             translate([-width, 0, 0])
                 part(width, height, depth);
-        translate([width - 60, 60, -THICKNESS])
-            fan();
+        translate([width - 150 - THICKNESS, THICKNESS, 0])
+            alim();
     };
 
     translate([width, height - 30, depth - THICKNESS])
@@ -288,17 +351,15 @@ module back_right(width, height, depth) {
 
     if (DISPLAY_BLOCKS) {
         color("red")
-            translate([width - 150 - THICKNESS, THICKNESS, THICKNESS])
+            translate([width - 150 - THICKNESS, THICKNESS, 0])
                 alim();
     }
 }
 
 module alim() {
     cube([150, 100, 50]);
-}
-
-module fan() {
-    cylinder(THICKNESS, d=60);
+    translate([150 - 15 - 60 / 2, 60 / 2 + 5, -THICKNESS])
+        cylinder(THICKNESS, d=60);
 }
 
 module sonde() {
