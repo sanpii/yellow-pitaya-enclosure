@@ -10,7 +10,6 @@ DISPLAY_BLOCKS=false;
 main();
 
 module main() {
-
     difference() {
         union() {
             front();
@@ -100,6 +99,25 @@ module front_left(width, height, depth) {
         translate([THICKNESS + 35, height - 100, 0])
             fixed_alim();
     };
+
+    translate([0, height - 30, -THICKNESS - 30])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 30, -THICKNESS - 30 * 2 - 10])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 80, -THICKNESS - 30])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 80, -THICKNESS - 30 * 2 - 10])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 130, -THICKNESS - 30])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 130, -THICKNESS - 30 * 2 - 10])
+        rotate([180, 0, 180])
+            sonde();
 }
 
 module variable_alim() {
@@ -172,6 +190,11 @@ module front_right(width, height, depth) {
         translate([28, THICKNESS + 3, 0])
             power_button();
     };
+
+    translate([width, height - 30, -THICKNESS])
+        sonde();
+    translate([width, height - 30, -THICKNESS - 30 - 10])
+        sonde();
 }
 
 module screen_in() {
@@ -217,6 +240,20 @@ module back_left(width, height, depth) {
             power_plug();
     };
 
+    translate([0, height - 30, depth - THICKNESS - 30])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 30, depth - THICKNESS - 30 * 2 - 10])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 80, depth - THICKNESS - 30])
+        rotate([180, 0, 180])
+            sonde();
+    translate([0, height - 80, depth - THICKNESS - 30 * 2 - 10])
+        rotate([180, 0, 180])
+            sonde();
+
+
     if (DISPLAY_BLOCKS) {
         color("red")
             translate([27, THICKNESS + 5, THICKNESS + 5])
@@ -244,6 +281,11 @@ module back_right(width, height, depth) {
             fan();
     };
 
+    translate([width, height - 30, depth - THICKNESS])
+        sonde();
+    translate([width, height - 30, depth - THICKNESS - 30 - 10])
+        sonde();
+
     if (DISPLAY_BLOCKS) {
         color("red")
             translate([width - 150 - THICKNESS, THICKNESS, THICKNESS])
@@ -257,4 +299,26 @@ module alim() {
 
 module fan() {
     cylinder(THICKNESS, d=60);
+}
+
+module sonde() {
+    rotate([-90, 0, 0]) {
+        difference() {
+            union() {
+                cube([30, 30, 5]);
+                difference() {
+                    rotate([0, 90, 0])
+                        cube([20, 30, 20]);
+                    rotate([90, 90, 0])
+                        translate([20, 20, -30])
+                        cylinder(30, d=40);
+                }
+            }
+            translate([20, 15, -5])
+                cylinder(10, d=30);
+            rotate([90, 90, 90])
+                translate([10, 15, 0])
+                    cylinder(10, r=5);
+        }
+    }
 }
