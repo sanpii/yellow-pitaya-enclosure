@@ -49,11 +49,11 @@ module back() {
 module part(width, height, depth) {
     cube([width, height, THICKNESS]);
 
-    translate([width, 0, -20])
+    translate([width, 0, -16])
         rotate([0, -90, 0])
         screw_support();
 
-    translate([width, height - 20, -20])
+    translate([width, height - 16, -16])
         rotate([0, -90, 0])
         screw_support();
 
@@ -86,10 +86,16 @@ module part(width, height, depth) {
 
 module screw_support() {
     difference() {
-        cube([20, 20, 10]);
-        translate([10, 10, 0])
-            cylinder(10, r=5);
+        cube([16, 16, 10]);
+        translate([8, 8, 5])
+            screw();
     };
+
+    if (DISPLAY_BLOCKS) {
+        color("red")
+            translate([8, 8, 5])
+                screw();
+    }
 }
 
 module middle_part(width, height, depth) {
@@ -100,11 +106,11 @@ module middle_part(width, height, depth) {
                 cube([depth, height - THICKNESS * 2, THICKNESS]);
     };
 
-    translate([10, 0, -20])
+    translate([10, 0, -16])
         rotate([0, -90, 0])
         screw_support();
 
-    translate([10, height - 20, -20])
+    translate([10, height - 16, -16])
         rotate([0, -90, 0])
         screw_support();
 }
