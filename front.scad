@@ -77,9 +77,9 @@ module front_right(width, height, depth) {
             power_button();
     };
 
-    translate([width, height - 30, -6])
+    translate([width, height - 30, -3])
         support_sonde();
-    translate([width, height - 30, -42])
+    translate([width, height - 30, -39])
         support_sonde();
 
     if (DISPLAY_BLOCKS) {
