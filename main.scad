@@ -205,15 +205,35 @@ module front_right(width, height, depth) {
             bnc_plug();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();
+
+        translate([width + 6, height - 30 - 12, -18])
+            rotate([0, 90, 0])
+                rotate([0, 0, 90])
+                    screw();
+
+        translate([width + 6, height - 30 - 12, -54])
+            rotate([0, 90, 0])
+                rotate([0, 0, 90])
+                    screw();
     };
 
-    translate([width, height - 30, 0])
+    translate([width, height - 30, -6])
         sonde();
-    translate([width, height - 30, -36])
+    translate([width, height - 30, -42])
         sonde();
 
     if (DISPLAY_BLOCKS) {
         color("red") {
+            translate([width + 6, height - 30 - 12, -18])
+                rotate([0, 90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
+            translate([width + 6, height - 30 - 12, -54])
+                rotate([0, 90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
             translate([width - 30, THICKNESS + 3, -17 + THICKNESS])
                 power_button();
             translate([21, 20, -38 + THICKNESS])
@@ -344,6 +364,16 @@ module back_right(width, height, depth) {
                 part(width, height, depth);
         translate([width - 150 - THICKNESS, THICKNESS, 0])
             alim();
+
+        translate([width + 6, height - 30 - 12, depth - 12])
+            rotate([0, 90, 0])
+                rotate([0, 0, 90])
+                    screw();
+
+        translate([width + 6, height - 30 - 12, depth - 36 - 12])
+            rotate([0, 90, 0])
+                rotate([0, 0, 90])
+                    screw();
     };
 
     translate([width, height - 30, depth])
@@ -352,9 +382,20 @@ module back_right(width, height, depth) {
         sonde();
 
     if (DISPLAY_BLOCKS) {
-        color("red")
+        color("red") {
+            translate([width + 6, height - 30 - 12, depth - 12])
+                rotate([0, 90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
+            translate([width + 6, height - 30 - 12, depth - 36 - 12])
+                rotate([0, 90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
             translate([width - 150 - THICKNESS, THICKNESS, 0])
                 alim();
+        }
     }
 }
 
