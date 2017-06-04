@@ -100,29 +100,38 @@ module front_left(width, height, depth) {
             variable_alim();
         translate([THICKNESS + 35, height - 100, -26 + THICKNESS])
             fixed_alim();
+
+        translate([-5, height - 30 - 12, -24])
+            rotate([0, -90, 0])
+            rotate([0, 0, 90])
+            screw();
+
+        translate([-5, height - 30 - 12, -60])
+            rotate([0, -90, 0])
+            rotate([0, 0, 90])
+            screw();
+
     };
 
     translate([0, height - 30, -36])
         rotate([180, 0, 180])
-            sonde();
+            support_banana();
     translate([0, height - 30, -36 * 2])
         rotate([180, 0, 180])
-            sonde();
-    translate([0, height - 80, -36])
-        rotate([180, 0, 180])
-            sonde();
-    translate([0, height - 80, -36 * 2])
-        rotate([180, 0, 180])
-            sonde();
-    translate([0, height - 130, -36])
-        rotate([180, 0, 180])
-            sonde();
-    translate([0, height - 130, -36 * 2])
-        rotate([180, 0, 180])
-            sonde();
+            support_banana();
 
     if (DISPLAY_BLOCKS) {
         color("red") {
+            translate([-5, height - 30 - 12, -24])
+                rotate([0, -90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
+            translate([-5, height - 30 - 12, -60])
+                rotate([0, -90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
             translate([THICKNESS + 30, height - 50, -24 + THICKNESS])
                 variable_alim();
             translate([THICKNESS + 35, height - 100, -26 + THICKNESS])
@@ -218,9 +227,9 @@ module front_right(width, height, depth) {
     };
 
     translate([width, height - 30, -6])
-        sonde();
+        support_sonde();
     translate([width, height - 30, -42])
-        sonde();
+        support_sonde();
 
     if (DISPLAY_BLOCKS) {
         color("red") {
@@ -283,24 +292,39 @@ module back_left(width, height, depth) {
                 power_plug();
             translate([(width - 102) / 2, THICKNESS + 10, 0])
                 lm2596();
+
+            translate([-5, height - 30 - 12, 15])
+                rotate([0, -90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
+            translate([-5, height - 30 - 12, 51])
+                rotate([0, -90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
     };
 
     translate([0, height - 30, depth - 36])
         rotate([180, 0, 180])
-            sonde();
+            support_banana();
     translate([0, height - 30, depth - 36 * 2])
         rotate([180, 0, 180])
-            sonde();
-    translate([0, height - 80, depth - 36])
-        rotate([180, 0, 180])
-            sonde();
-    translate([0, height - 80, depth - 36 * 2])
-        rotate([180, 0, 180])
-            sonde();
+            support_banana();
 
 
     if (DISPLAY_BLOCKS) {
         color("red") {
+            translate([-5, height - 30 - 12, 15])
+                rotate([0, -90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
+            translate([-5, height - 30 - 12, 51])
+                rotate([0, -90, 0])
+                    rotate([0, 0, 90])
+                        screw();
+
             translate([27, THICKNESS + 5, THICKNESS + 5])
                 power_plug();
             translate([(width - 93) / 2, height - 73 - THICKNESS, 0])
@@ -377,9 +401,9 @@ module back_right(width, height, depth) {
     };
 
     translate([width, height - 30, depth])
-        sonde();
+        support_sonde();
     translate([width, height - 30, depth - 36])
-        sonde();
+        support_sonde();
 
     if (DISPLAY_BLOCKS) {
         color("red") {
@@ -405,25 +429,25 @@ module alim() {
         cylinder(THICKNESS, d=60);
 }
 
-module sonde() {
+module support_sonde() {
     translate([5, 0, 0]) {
         rotate([-90, 0, 0]) {
             difference() {
-                union() {
-                    cube([21, 24, 5]);
-                    rotate([0, 90, 0])
-                        cube([20, 24, 20]);
-                    rotate([0, -90, 0])
-                        translate([-20, 0, 0])
-                            cube([25, 24, 5]);
-                }
-                rotate([90, 90, 0])
-                    translate([20, 20, -24])
-                        cylinder(24, d=40);
+                base_support();
                 translate([15, 12, -5])
                     cylinder(10, d=14);
-                rotate([0, 90, 0])
-                    translate([12, 12, 0])
+            }
+        }
+    }
+}
+
+module support_banana() {
+    translate([5, 0, 0]) {
+        rotate([-90, 0, 0]) {
+            difference() {
+                base_support();
+                rotate([0, 180, 0])
+                    translate([-12, 12, 0])
                         screw();
             }
         }
@@ -434,4 +458,23 @@ module screw() {
     cylinder(5, d=9, $fn=6);
     translate([0, 0, -10])
         cylinder(10, d=5, $fn=20);
+}
+
+module base_support() {
+    difference() {
+        union() {
+            cube([21, 24, 5]);
+            rotate([0, 90, 0])
+                cube([20, 24, 20]);
+            rotate([0, -90, 0])
+                translate([-20, 0, 0])
+                    cube([25, 24, 5]);
+        }
+        rotate([90, 90, 0])
+            translate([20, 20, -24])
+                cylinder(24, d=40);
+        rotate([0, 90, 0])
+            translate([12, 12, 0])
+                screw();
+    }
 }
