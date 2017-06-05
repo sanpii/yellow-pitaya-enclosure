@@ -33,11 +33,19 @@ module main() {
 module part(width, height, depth) {
     cube([width, height, THICKNESS]);
 
-    translate([width, 0, -16])
+    translate([width - 10, 16, -16])
+        rotate([0, -90, -180])
+            screw_support();
+
+    translate([width, height - 16, -16])
         rotate([0, -90, 0])
         screw_support();
 
-    translate([width, height - 16, -16])
+    translate([width - 10, 16, -depth + 4])
+        rotate([0, -90, -180])
+            screw_support();
+
+    translate([width, height - 16, -depth + 4])
         rotate([0, -90, 0])
         screw_support();
 
@@ -76,11 +84,19 @@ module middle_part(width, height, depth) {
                 cube([depth, height - THICKNESS * 2, THICKNESS]);
     };
 
-    translate([10, 0, -16])
-        rotate([0, -90, 0])
+    translate([0, 16, -16])
+        rotate([0, -90, -180])
         screw_support();
 
     translate([10, height - 16, -16])
+        rotate([0, -90, 0])
+        screw_support();
+
+    translate([0, 16, -depth + 4])
+        rotate([0, -90, -180])
+            screw_support();
+
+    translate([10, height - 16, -depth + 4])
         rotate([0, -90, 0])
         screw_support();
 }

@@ -41,10 +41,10 @@ module front_middle(width, height, depth) {
     difference() {
         union() {
             middle_part(width, height, depth);
-            translate([THICKNESS, height - screen_size - THICKNESS * 2, -THICKNESS * 2])
+            translate([THICKNESS, height - screen_size - THICKNESS * 2, -THICKNESS])
                 cube([width - THICKNESS, screen_size + THICKNESS, THICKNESS * 2]);
         };
-        translate([-THICKNESS+6, height - screen_size + THICKNESS, -THICKNESS * 2])
+        translate([-THICKNESS+6, height - screen_size + THICKNESS, -THICKNESS])
             screen_in();
         translate([0, height - screen_size - THICKNESS, -THICKNESS])
             screen_out();
