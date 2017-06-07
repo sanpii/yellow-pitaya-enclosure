@@ -27,6 +27,29 @@ module main() {
             translate([-WIDTH / 3 + 30, 20, HEIGHT - 1])
                 linear_extrude(THICKNESS)
                     text("Yellow Pitaya", DEPTH / 3, "Stencilia\\-A:style=Regular");
+        translate([-WIDTH / 3, HEIGHT - 40, -10])
+            rotate([0, -90, 0])
+                hinge();
+        translate([-WIDTH / 3, HEIGHT / 2 - 15, -10])
+            rotate([0, -90, 0])
+                hinge();
+        translate([-WIDTH / 3, 15, -10])
+            rotate([0, -90, 0])
+                hinge();
+    }
+
+    if (DISPLAY_BLOCKS) {
+        color("red") {
+            translate([-WIDTH / 3, HEIGHT - 40, -10])
+                rotate([0, -90, 0])
+                    hinge();
+            translate([-WIDTH / 3, HEIGHT / 2 - 15, -10])
+                rotate([0, -90, 0])
+                    hinge();
+            translate([-WIDTH / 3, 15, -10])
+                rotate([0, -90, 0])
+                    hinge();
+        }
     }
 }
 

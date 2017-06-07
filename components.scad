@@ -79,3 +79,16 @@ module screw() {
     translate([0, 0, -30])
         cylinder(30, d=5, $fn=20);
 }
+
+module hinge() {
+    cube([20, 30, 2]);
+
+    translate([4, 6, 0])
+        screw();
+    translate([16, 6, 0])
+        screw();
+    translate([4, 24, 0])
+        screw();
+    translate([16, 24, 0])
+        screw();
+}
