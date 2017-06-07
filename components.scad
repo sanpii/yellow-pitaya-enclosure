@@ -6,6 +6,10 @@ module variable_alim() {
 
 module dps_screen() {
     cube([72, 40, 24]);
+    translate([-4, 14, 0])
+        cube([4, 12, 12]);
+    translate([72, 14, 0])
+        cube([4, 12, 12]);
 }
 
 module fixed_alim() {
