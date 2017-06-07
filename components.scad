@@ -6,22 +6,24 @@ module variable_alim() {
 
 module dps_screen() {
     cube([72, 40, 24]);
-    translate([-4, 14, 0])
+    translate([-4, 14, 12])
         cube([4, 12, 12]);
-    translate([72, 14, 0])
+    translate([72, 14, 12])
         cube([4, 12, 12]);
 }
 
 module fixed_alim() {
         banana_pair();
-    translate([40, 0, 0])
+    translate([75, 0, 0])
         banana_pair();
+
+    translate([36, -25, 9])
+        power_button();
+
     translate([0, -20, 0])
         banana_pair();
-    translate([40, -20, 0])
+    translate([75, -20, 0])
         banana_pair();
-    translate([20, -60, 9])
-        power_button();
 }
 
 module screen_in() {

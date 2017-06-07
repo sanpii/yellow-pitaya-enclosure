@@ -12,9 +12,9 @@ module front() {
 module front_left(width, height, depth) {
     difference() {
         part(width, height, depth);
-        translate([THICKNESS + 30, height - 50, 0])
+        translate([width / 2 - 37.5, height - 60, -24 + THICKNESS])
             variable_alim();
-        translate([THICKNESS + 35, height - 100, -26 + THICKNESS])
+        translate([width / 2 - 50, height - 120, -26 + THICKNESS])
             fixed_alim();
     };
 
@@ -27,9 +27,9 @@ module front_left(width, height, depth) {
 
     if (DISPLAY_BLOCKS) {
         color("red") {
-            translate([THICKNESS + 30, height - 50, -24 + THICKNESS])
+            translate([width / 2 - 37.5, height - 60, -24 + THICKNESS])
                 variable_alim();
-            translate([THICKNESS + 35, height - 100, -26 + THICKNESS])
+            translate([width / 2 - 50, height - 120, -26 + THICKNESS])
                 fixed_alim();
         }
     }
