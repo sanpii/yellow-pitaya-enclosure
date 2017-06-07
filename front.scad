@@ -2,7 +2,7 @@ module front() {
     translate([-WIDTH/3, 0, DEPTH / 2])
         front_left(WIDTH/3, HEIGHT, DEPTH/2);
 
-    !translate([0, 0, DEPTH / 2])
+    translate([0, 0, DEPTH / 2])
         front_middle(WIDTH/3, HEIGHT, DEPTH/2);
 
     translate([WIDTH/3, 0, DEPTH / 2])
@@ -48,7 +48,7 @@ module front_middle(width, height, depth) {
             screen_in();
         translate([0, height - screen_size - 12, -THICKNESS])
             screen_out();
-        translate([25, 18, 0])
+        translate([13, 18, 0])
             bnc();
     };
 
@@ -71,8 +71,6 @@ module front_right(width, height, depth) {
                 part(width, height, depth);
         translate([-width, height - screen_size + THICKNESS, -THICKNESS * 2])
             screen_in();
-        translate([21, 20, 0])
-            bnc_plug();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();
     };
@@ -86,8 +84,6 @@ module front_right(width, height, depth) {
         color("red") {
             translate([width - 30, THICKNESS + 3, -17 + THICKNESS])
                 power_button();
-            translate([21, 20, -38 + THICKNESS])
-                bnc_plug();
         }
     }
 }

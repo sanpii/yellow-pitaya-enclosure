@@ -11,15 +11,10 @@ module banana_plug() {
 }
 
 module bnc() {
-    margin = 35;
-
-        bnc_plug();
-    translate([margin, 0, 0])
-        bnc_plug();
-    translate([margin * 2, 0, 0])
-        bnc_plug();
-    translate([margin * 3, 0, 0])
-        bnc_plug();
+    for (i = [0:4]) {
+        translate([35 * i, 0, 0])
+            bnc_plug();
+    }
 }
 
 module bnc_plug() {
