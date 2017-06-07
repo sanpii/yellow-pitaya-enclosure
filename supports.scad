@@ -1,6 +1,14 @@
 module screw_support() {
     difference() {
-        cube([12, 12, 8]);
+        union() {
+            translate([10, 12, 0])
+                cylinder(8, r=12);
+            cube([12, 12, 8]);
+        };
+        translate([-12, 0, 0])
+            cube([12, 24, 12]);
+        translate([0, 12, 0])
+            cube([24, 12, 12]);
         translate([6, 6, 5])
             screw();
     };

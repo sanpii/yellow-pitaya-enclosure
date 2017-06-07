@@ -41,20 +41,20 @@ module front_middle(width, height, depth) {
     difference() {
         union() {
             middle_part(width, height, depth);
-            translate([THICKNESS, height - screen_size - THICKNESS * 2, -THICKNESS])
-                cube([width - THICKNESS, screen_size + THICKNESS, THICKNESS * 2]);
+            translate([THICKNESS, height - screen_size - THICKNESS - 15, -THICKNESS])
+                cube([width - THICKNESS, screen_size + 15, THICKNESS * 2]);
         };
-        translate([-THICKNESS + 6, height - screen_size - 6, -THICKNESS])
+        translate([-THICKNESS + 6, height - screen_size - 6, 0])
             screen_in();
         translate([0, height - screen_size - 12, -THICKNESS])
             screen_out();
-        translate([13, 18, 0])
+        translate([23, 18, 0])
             bnc();
     };
 
     if (DISPLAY_BLOCKS) {
         color("red") {
-            translate([0, height - screen_size - THICKNESS, -THICKNESS])
+            translate([0, height - screen_size - 12, -THICKNESS])
                 screen();
             translate([25, 18, -38 + THICKNESS])
                 bnc();
@@ -69,8 +69,10 @@ module front_right(width, height, depth) {
         rotate([0, 0, 180])
             translate([-width, -height, 0])
                 part(width, height, depth);
-        translate([-width, height - screen_size + THICKNESS, -THICKNESS * 2])
+        translate([-width, height - screen_size - 6, -THICKNESS * 2])
             screen_in();
+        translate([-width, height - screen_size - 12, -THICKNESS])
+            screen_out();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();
     };

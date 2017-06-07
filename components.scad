@@ -27,7 +27,7 @@ module fixed_alim() {
 }
 
 module screen_in() {
-    cube([min(201, WIDTH/2), 115, THICKNESS * 3]);
+    cube([min(201, WIDTH/2), 115, THICKNESS]);
 }
 
 module screen_out() {
