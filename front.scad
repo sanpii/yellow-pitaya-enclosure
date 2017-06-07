@@ -56,7 +56,7 @@ module front_middle(width, height, depth) {
         color("red") {
             translate([0, height - screen_size - 12, -THICKNESS])
                 screen();
-            translate([25, 18, -38 + THICKNESS])
+            translate([23, 18, -38 + THICKNESS])
                 bnc();
         }
     }

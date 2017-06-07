@@ -12,11 +12,11 @@ module banana_plug() {
 
 module bnc() {
     for (i = [0:4]) {
-        translate([35 * i, 0, 0])
+        translate([30 * i, 0, 0])
             bnc_plug();
     }
 }
 
 module bnc_plug() {
-    cylinder(38, d=21);
+    cylinder(38, d=14);
 }
