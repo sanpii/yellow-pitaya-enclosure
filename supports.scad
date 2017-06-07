@@ -1,17 +1,13 @@
 module screw_support() {
-    translate([THICKNESS * 3, 10, 0]) {
-        difference() {
-            cylinder(10, d=16);
-            translate([0, 0, 5])
-                screw();
-            translate([-8, 4, 0])
-                cube([16, 16, 10]);
-        };
-    }
+    difference() {
+        cube([12, 12, 8]);
+        translate([6, 6, 5])
+            screw();
+    };
 
     if (DISPLAY_BLOCKS) {
         color("red")
-            translate([6, 10, 5])
+            translate([6, 6, 5])
                 screw();
     }
 }

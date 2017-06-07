@@ -2,7 +2,7 @@ module front() {
     translate([-WIDTH/3, 0, DEPTH / 2])
         front_left(WIDTH/3, HEIGHT, DEPTH/2);
 
-    translate([0, 0, DEPTH / 2])
+    !translate([0, 0, DEPTH / 2])
         front_middle(WIDTH/3, HEIGHT, DEPTH/2);
 
     translate([WIDTH/3, 0, DEPTH / 2])
@@ -44,11 +44,11 @@ module front_middle(width, height, depth) {
             translate([THICKNESS, height - screen_size - THICKNESS * 2, -THICKNESS])
                 cube([width - THICKNESS, screen_size + THICKNESS, THICKNESS * 2]);
         };
-        translate([-THICKNESS+6, height - screen_size + THICKNESS, -THICKNESS])
+        translate([-THICKNESS + 6, height - screen_size - 6, -THICKNESS])
             screen_in();
-        translate([0, height - screen_size - THICKNESS, -THICKNESS])
+        translate([0, height - screen_size - 12, -THICKNESS])
             screen_out();
-        translate([25, 20, 0])
+        translate([25, 18, 0])
             bnc();
     };
 
@@ -56,7 +56,7 @@ module front_middle(width, height, depth) {
         color("red") {
             translate([0, height - screen_size - THICKNESS, -THICKNESS])
                 screen();
-            translate([25, 20, -38 + THICKNESS])
+            translate([25, 18, -38 + THICKNESS])
                 bnc();
         }
     }

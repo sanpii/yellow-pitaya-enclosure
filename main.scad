@@ -7,7 +7,7 @@ DEPTH=150;
 THICKNESS=2;
 
 /* [Hidden] */
-DISPLAY_BLOCKS=true;
+DISPLAY_BLOCKS=false;
 
 include <back.scad>;
 include <components.scad>;
@@ -33,19 +33,19 @@ module main() {
 module part(width, height, depth) {
     cube([width, height, THICKNESS]);
 
-    translate([width - 10, 16, -16])
+    translate([width - 8, 12, -12])
         rotate([0, -90, -180])
             screw_support();
 
-    translate([width, height - 16, -16])
+    translate([width, height - 12, -12])
         rotate([0, -90, 0])
         screw_support();
 
-    translate([width - 10, 16, -depth + 4])
+    translate([width - 8, 12, -depth])
         rotate([0, -90, -180])
             screw_support();
 
-    translate([width, height - 16, -depth + 4])
+    translate([width, height - 12, -depth])
         rotate([0, -90, 0])
         screw_support();
 
@@ -84,19 +84,19 @@ module middle_part(width, height, depth) {
                 cube([depth, height - THICKNESS * 2, THICKNESS]);
     };
 
-    translate([0, 16, -16])
+    translate([0, 12, -12])
         rotate([0, -90, -180])
         screw_support();
 
-    translate([10, height - 16, -16])
+    translate([8, height - 12, -12])
         rotate([0, -90, 0])
         screw_support();
 
-    translate([0, 16, -depth + 4])
+    translate([0, 12, -depth])
         rotate([0, -90, -180])
             screw_support();
 
-    translate([10, height - 16, -depth + 4])
+    translate([8, height - 12, -depth])
         rotate([0, -90, 0])
         screw_support();
 }
