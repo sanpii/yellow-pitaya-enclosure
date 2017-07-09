@@ -92,3 +92,10 @@ module hinge() {
     translate([16, 24, 0])
         screw();
 }
+
+module lock() {
+    translate([0, 25, 0])
+        screw();
+    translate([40, 25, 0])
+        screw();
+}

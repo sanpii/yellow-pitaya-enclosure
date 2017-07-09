@@ -36,6 +36,9 @@ module main() {
         translate([-WIDTH / 3, 15, -10])
             rotate([0, -90, 0])
                 hinge();
+        translate([2 * WIDTH / 3, HEIGHT - 40, 20])
+            rotate([0, 90, 0])
+                lock();
     }
 
     if (DISPLAY_BLOCKS) {
@@ -49,6 +52,9 @@ module main() {
             translate([-WIDTH / 3, 15, -10])
                 rotate([0, -90, 0])
                     hinge();
+            translate([2 * WIDTH / 3, HEIGHT - 40, 20])
+                rotate([0, 90, 0])
+                    lock();
         }
     }
 }
