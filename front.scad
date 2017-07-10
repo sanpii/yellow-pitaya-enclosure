@@ -48,16 +48,20 @@ module front_middle(width, height, depth) {
             screen_in();
         translate([0, height - screen_size - 12, -THICKNESS])
             screen_out();
-        translate([23, 18, 0])
+        translate([15, 18, 0])
             bnc();
+        translate([width - 25, 10, -15 + THICKNESS])
+            usb();
     };
 
     if (DISPLAY_BLOCKS) {
         color("red") {
             translate([0, height - screen_size - 12, -THICKNESS])
                 screen();
-            translate([23, 18, -38 + THICKNESS])
+            translate([15, 18, -38 + THICKNESS])
                 bnc();
+            translate([width - 25, 10, -15 + THICKNESS])
+                usb();
         }
     }
 }

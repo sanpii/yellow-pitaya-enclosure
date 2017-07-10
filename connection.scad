@@ -12,11 +12,15 @@ module banana_plug() {
 
 module bnc() {
     for (i = [0:4]) {
-        translate([30 * i, 0, 0])
+        translate([28 * i, 0, 0])
             bnc_plug();
     }
 }
 
 module bnc_plug() {
     cylinder(38, d=14);
+}
+
+module usb() {
+    cube([14, 15, 15]);
 }
