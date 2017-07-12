@@ -43,7 +43,9 @@ module dps() {
 }
 
 module lm2596() {
-    cube([102, 80, 20]);
+    cube([102, 69, 20]);
+    translate([12, 69, 0])
+        cube([78, 11, 20]);
     translate([0, 23, -THICKNESS - 1])
         cube([88, 15, THICKNESS + 1]);
 }
