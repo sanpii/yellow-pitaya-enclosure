@@ -76,8 +76,8 @@ module power_plug() {
 
 module screw() {
     cylinder(5, d=9, $fn=6);
-    translate([0, 0, -30])
-        cylinder(30, d=5, $fn=20);
+    translate([0, 0, -20])
+        cylinder(20, d=5, $fn=20);
 }
 
 module hinge() {
