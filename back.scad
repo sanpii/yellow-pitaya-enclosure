@@ -16,6 +16,8 @@ module back_left(width, height, depth) {
                 part(width, height, depth);
             translate([27, THICKNESS + 5, THICKNESS + 5])
                 power_plug();
+            translate([(width - 93) / 2, height - 73 - THICKNESS, 0])
+                dps();
             translate([(width - 102) / 2, THICKNESS + 5, 0])
                 lm2596();
     };
@@ -46,6 +48,8 @@ module back_middle(width, height, depth) {
                 middle_part(width, height, depth);
         translate([20, THICKNESS, 0])
             redpitaya();
+        translate([20, 70, 0])
+            raspberry();
     }
 
 

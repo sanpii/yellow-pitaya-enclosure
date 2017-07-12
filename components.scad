@@ -40,6 +40,8 @@ module screen() {
 
 module dps() {
     cube([93, 73, 45]);
+
+    holes(93, 73);
 }
 
 module lm2596() {
@@ -48,6 +50,8 @@ module lm2596() {
         cube([78, 11, 20]);
     translate([0, 23, -THICKNESS - 1])
         cube([88, 15, THICKNESS + 1]);
+
+    holes(102, 69);
 }
 
 module redpitaya() {
@@ -55,10 +59,32 @@ module redpitaya() {
     translate([30, 10, -THICKNESS - 1])
         rotate([0, 0, 45])
             cube([30, 30, THICKNESS + 1]);
+
+    holes(90, 60);
 }
 
 module raspberry() {
     cube([90, 60, 20]);
+
+    holes(65, 60);
+}
+
+module holes(width, height) {
+    translate([4, 4, -THICKNESS])
+        rotate([180, 0, 0])
+            screw();
+
+    translate([width - 4, 4, -THICKNESS])
+        rotate([180, 0, 0])
+            screw();
+
+    translate([4, height - 4, -THICKNESS])
+        rotate([180, 0, 0])
+            screw();
+
+    translate([width - 4, height - 4, -THICKNESS])
+        rotate([180, 0, 0])
+            screw();
 }
 
 module alim() {
