@@ -73,10 +73,8 @@ module front_right(width, height, depth) {
         rotate([0, 0, 180])
             translate([-width, -height, 0])
                 part(width, height, depth);
-        translate([-width, height - screen_size - 6, -THICKNESS * 2])
+        translate([-width, height - screen_size - 6, 0])
             screen_in();
-        translate([-width, height - screen_size - 12, -THICKNESS])
-            screen_out();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();
     };
