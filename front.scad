@@ -54,8 +54,6 @@ module front_middle(width, height, depth) {
         screen_fix_screw(width, height);
         translate([17, 15, -38 + THICKNESS])
             bnc();
-        translate([width - 25, 10, -15 + THICKNESS])
-            usb();
     };
 
     if (DISPLAY_BLOCKS) {
@@ -65,8 +63,6 @@ module front_middle(width, height, depth) {
             screen_fix_screw(width, height);
             translate([15, 18, -38 + THICKNESS])
                 bnc();
-            translate([width - 25, 10, -15 + THICKNESS])
-                usb();
         }
     }
 }
@@ -105,6 +101,8 @@ module front_right(width, height, depth) {
             screen_in();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();
+        translate([10, 10, -15 + THICKNESS])
+            usb();
     };
 
     translate([width, height - 30, -3])
@@ -116,6 +114,8 @@ module front_right(width, height, depth) {
         color("red") {
             translate([width - 30, THICKNESS + 3, -17 + THICKNESS])
                 power_button();
+            translate([10, 10, -15 + THICKNESS])
+                usb();
         }
     }
 }

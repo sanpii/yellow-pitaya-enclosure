@@ -11,10 +11,13 @@ module banana_plug() {
 }
 
 module bnc() {
-    for (i = [0:4]) {
-        translate([28 * i, 0, 0])
+    for (i = [0:3]) {
+        translate([32 * i, 0, 0])
             bnc_plug();
     }
+
+    translate([132, 0, 0])
+        bnc_plug();
 }
 
 module bnc_plug() {
