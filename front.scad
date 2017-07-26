@@ -67,20 +67,22 @@ module front_middle(width, height, depth) {
 
 module screen_fix(width, height, depth) {
     difference() {
-        translate([8, height - SCREEN_HEIGHT - THICKNESS - 18, -THICKNESS * 2])
-            cube([width - 16, SCREEN_HEIGHT + 18, THICKNESS]);
+        translate([23, height - SCREEN_HEIGHT - THICKNESS - 18, -THICKNESS * 2])
+            cube([180, SCREEN_HEIGHT + 18, THICKNESS]);
+        translate([157, height - THICKNESS - 12, -THICKNESS * 2])
+            cube([20, 12, THICKNESS * 2]);
         screen_fix_screw(width, height);
     }
 }
 
 module screen_fix_screw(width, height) {
-    translate([45, height - 8, THICKNESS])
+    translate([32, height - 8, THICKNESS])
         screw();
-    translate([width - 12, height - 8, THICKNESS])
+    translate([200 - 2, height - 8, THICKNESS])
         screw();
-    translate([45, height - SCREEN_HEIGHT - 16, THICKNESS])
+    translate([32, height - SCREEN_HEIGHT - 16, THICKNESS])
         screw();
-    translate([width - 12, height - SCREEN_HEIGHT - 16, THICKNESS])
+    translate([200 - 2, height - SCREEN_HEIGHT - 16, THICKNESS])
         screw();
 }
 
@@ -93,7 +95,7 @@ module front_right(width, height, depth) {
             screen_in();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();
-        translate([10, 10, -15 + THICKNESS])
+        translate([10, 8, -15 + THICKNESS])
             usb();
     };
 
@@ -106,7 +108,7 @@ module front_right(width, height, depth) {
         color("red") {
             translate([width - 30, THICKNESS + 3, -17 + THICKNESS])
                 power_button();
-            translate([10, 10, -15 + THICKNESS])
+            translate([10, 8, -15 + THICKNESS])
                 usb();
         }
     }
