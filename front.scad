@@ -39,17 +39,15 @@ module front_left(width, height, depth) {
 }
 
 module front_middle(width, height, depth) {
-    screen_size=126;
-
     difference() {
         union() {
             middle_part(width, height, depth);
             translate([THICKNESS, 0, -THICKNESS])
                 cube([width - THICKNESS, height, THICKNESS * 2]);
         };
-        translate([-THICKNESS + 6, height - screen_size - 6, 0])
+        translate([-THICKNESS + 6, height - SCREEN_HEIGHT - 6, 0])
             screen_in();
-        translate([0, height - screen_size - 12, -THICKNESS])
+        translate([0, height - SCREEN_HEIGHT - 12, -THICKNESS])
             screen_out();
         screen_fix_screw(width, height);
         translate([17, 15, -38 + THICKNESS])
@@ -58,7 +56,7 @@ module front_middle(width, height, depth) {
 
     if (DISPLAY_BLOCKS) {
         color("red") {
-            translate([0, height - screen_size - 12, -THICKNESS])
+            translate([0, height - SCREEN_HEIGHT - 12, -THICKNESS])
                 screen();
             screen_fix_screw(width, height);
             translate([15, 18, -38 + THICKNESS])
@@ -68,36 +66,30 @@ module front_middle(width, height, depth) {
 }
 
 module screen_fix(width, height, depth) {
-    screen_size = 126;
-
     difference() {
-        translate([8, height - screen_size - THICKNESS - 18, -THICKNESS * 2])
-            cube([width - 16, screen_size + 18, THICKNESS]);
+        translate([8, height - SCREEN_HEIGHT - THICKNESS - 18, -THICKNESS * 2])
+            cube([width - 16, SCREEN_HEIGHT + 18, THICKNESS]);
         screen_fix_screw(width, height);
     }
 }
 
 module screen_fix_screw(width, height) {
-    screen_size = 126;
-
     translate([45, height - 8, THICKNESS])
         screw();
     translate([width - 12, height - 8, THICKNESS])
         screw();
-    translate([45, height - screen_size - 16, THICKNESS])
+    translate([45, height - SCREEN_HEIGHT - 16, THICKNESS])
         screw();
-    translate([width - 12, height - screen_size - 16, THICKNESS])
+    translate([width - 12, height - SCREEN_HEIGHT - 16, THICKNESS])
         screw();
 }
 
 module front_right(width, height, depth) {
-    screen_size=126;
-
     difference() {
         rotate([0, 0, 180])
             translate([-width, -height, 0])
                 part(width, height, depth);
-        translate([-width, height - screen_size - 6, 0])
+        translate([-width, height - SCREEN_HEIGHT - 6, 0])
             screen_in();
         translate([width - 30, THICKNESS + 3, 0])
             power_button();

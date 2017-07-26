@@ -31,11 +31,11 @@ module screen_in() {
 }
 
 module screen_out() {
-    cube([210, 126, THICKNESS]);
+    cube([210, SCREEN_HEIGHT, THICKNESS]);
 }
 
 module screen() {
-    cube([210, 126, THICKNESS]);
+    cube([210, SCREEN_HEIGHT, THICKNESS]);
 }
 
 module dps() {

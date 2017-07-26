@@ -6,6 +6,8 @@ DEPTH=150;
 
 THICKNESS=2;
 
+SCREEN_HEIGHT=126;
+
 /* [Hidden] */
 DISPLAY_BLOCKS=false;
 
