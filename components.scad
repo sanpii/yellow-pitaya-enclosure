@@ -36,6 +36,8 @@ module screen_out() {
 
 module screen() {
     cube([210, SCREEN_HEIGHT, THICKNESS]);
+    translate([95, -5, 0])
+        cube([20, 5, THICKNESS]);
 }
 
 module dps() {
