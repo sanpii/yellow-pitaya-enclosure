@@ -59,7 +59,7 @@ module front_middle(width, height, depth) {
             translate([0, height - SCREEN_HEIGHT - 12, -THICKNESS])
                 screen();
             screen_fix_screw(width, height);
-            translate([15, 18, -38 + THICKNESS])
+            translate([17, 15, -38 + THICKNESS])
                 bnc();
         }
     }
